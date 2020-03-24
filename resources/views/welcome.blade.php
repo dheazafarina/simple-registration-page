@@ -69,35 +69,15 @@
     </style>
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-dark main-color">
-      <a class="navbar-brand" href="#">Navbar</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="/registration">Registration</a>
-          </li>
-        </ul>
-      </div>
-    </nav>
+    @include('header')
 
     <div class="position-ref full-height">
       <div class="content" id="app">
-        <!-- <h3>
-          @yield('judul_halaman')
-        </h3>
-        @include('alert')
-        @yield('konten') -->
         <register></register>
       </div>
     </div>
 
-    <footer class="main-color text-white text-center" style="height: 15vh;">
-      <div style="padding-top: 40px;">&copy; Copyright 2020 - Dhea Zafarina</div>
-    </footer>
-     <script src=/js/app.js></script>
+    @include('footer')
   </body>
 </html>
 

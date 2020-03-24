@@ -1924,9 +1924,31 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log('Component mounted.');
+  },
+  data: function data() {
+    return {
+      name: '',
+      description: '',
+      output: ''
+    };
+  },
+  methods: {
+    formSubmit: function formSubmit(e) {
+      e.preventDefault();
+      var currentObj = this;
+      axios.post('/formSubmit', {
+        name: this.name,
+        description: this.description
+      }).then(function (response) {
+        currentObj.output = response.data;
+      })["catch"](function (error) {
+        currentObj.output = error;
+      });
+    }
   }
 });
 
@@ -1941,24 +1963,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -2179,7 +2183,11 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     month: function month() {
-      this.picker.month.push('January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December');
+      var _this = this;
+
+      axios.get('/month').then(function (response) {
+        return _this.picker.month = response.data;
+      });
     },
     date: function date() {
       var i = 1;
@@ -37794,7 +37802,7 @@ var render = function() {
                   _vm._v(" "),
                   _vm._l(_vm.picker.month, function(months) {
                     return _c("option", { attrs: { value: "month" } }, [
-                      _vm._v(_vm._s(months))
+                      _vm._v(_vm._s(months.name))
                     ])
                   })
                 ],

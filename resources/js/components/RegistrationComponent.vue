@@ -42,24 +42,12 @@
             name="first_name"
             class="form-control"
             placeholder="First name">
-          <!-- <div
-            v-if="hasOwnProp(error.register, 'first_name') == true && 
-                  error.register.first_name.length > 0"
-            class="error_message">
-            {{error.register.first_name[0].message}}
-          </div> -->
         </div>
         <div class="mt-3">
           <input type="text" v-model="form.last_name"
             name="last_name"
             class="form-control"
             placeholder="Last name">
-          <!-- <div
-            v-if="hasOwnProp(error.register, 'last_name') == true && 
-                  error.register.last_name.length > 0"
-            class="error_message">
-            {{error.register.last_name[0].message}}
-          </div> -->
         </div>
         <div class="mt-3">
           <p>Date of Birth</p>
@@ -73,7 +61,7 @@
             <div class="col-sm">
               <select class="custom-select" id="month">
                 <option selected>Month</option>
-                <option value="month" v-for="months in picker.month">{{ months }}</option>
+                <option value="month" v-for="months in picker.month">{{ months.name }}</option>
               </select>
             </div>
             <div class="col-sm">
@@ -97,12 +85,6 @@
             name="email"
             class="form-control"
             placeholder="Email">
-          <!-- <div
-            v-if="hasOwnProp(error.register, 'email') == true && 
-                  error.register.email.length > 0"
-            class="error_message">
-            {{error.register.email[0].message}}
-          </div> -->
         </div>
         <div class="mt-5">
           <button type="button" class="btn btn-primary btn-block" :disabled="show.login" @click="save">Register</button>
@@ -236,20 +218,8 @@
         }
       },
       month() {
-        this.picker.month.push(
-          'January',
-          'February',
-          'March',
-          'April',
-          'May',
-          'June',
-          'July',
-          'August',
-          'September',
-          'October',
-          'November',
-          'December'
-        );
+        axios.get('/month')
+          .then(response => this.picker.month = response.data);
       },
       date() {
         var i = 1

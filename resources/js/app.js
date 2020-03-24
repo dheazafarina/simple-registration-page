@@ -29,5 +29,5 @@ Vue.component('register', require('./components/RegistrationComponent.vue').defa
  */
 
 const app = new Vue({
-    el: '#app',
+    el: '#app'
 });
